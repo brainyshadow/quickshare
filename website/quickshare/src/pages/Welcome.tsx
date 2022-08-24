@@ -2,7 +2,12 @@ import React from "react";
 import logo from "./logo.svg";
 
 function Welcome() {
-  return <div>A page where you can view.</div>;
+  return (
+    <div className="bg-fuchsia-300 content-center">
+      <div>
+      </div>
+    </div>
+  );
 }
 
 export default Welcome;
