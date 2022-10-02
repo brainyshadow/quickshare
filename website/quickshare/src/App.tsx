@@ -5,12 +5,16 @@ import View from "./pages/View";
 import Welcome from "./pages/Welcome";
 import Edit from "./pages/Edit";
 
+function checkRoute(path: string, subStr: string) {
+  return path.substr(0, subStr.length) === subStr;
+}
+
 function routePage() {
-  if (window.location.pathname === "/view") {
+  if (checkRoute(window.location.pathname, "/view")) {
     return <View />;
-  } else if (window.location.pathname === "/edit") {
+  } else if (checkRoute(window.location.pathname, "/edit")) {
     return <Edit />;
-  } else if (window.location.pathname === "/welcome") {
+  } else if (checkRoute(window.location.pathname, "/welcome")) {
     return <Welcome />;
   } else {
     window.location.pathname = "/welcome";
