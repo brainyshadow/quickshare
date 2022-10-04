@@ -10,7 +10,7 @@ function Welcome() {
         <div className="m-auto">
           <h1 className="md:text-9xl text-8xl font-sans mb-10">quickshare</h1>
           <h2 className="mt-10">
-            The easiest to share text between two devices.
+            The easiest to share formatted text between two devices.
             <br />
             <a
               className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
