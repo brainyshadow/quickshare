@@ -1,6 +1,6 @@
 import React from "react";
 import QRCode from "react-qr-code";
-import TextEditor from "../components/TextEditor";
+import TextEditor  from "../components/TextEditor";
 
 function Edit() {
   return (
@@ -10,7 +10,7 @@ function Edit() {
           <h2 className="mt-10">
             Start Typing and when your ready, share it
             <br />
-            <TextEditor/>
+            <TextEditor />
             <a
               className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
               href="https://github.com/brainyshadow/quickshare"
