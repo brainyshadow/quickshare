@@ -11,13 +11,6 @@ function Edit() {
             Start Typing and when your ready, share it
             <br />
             <TextEditor />
-            <a
-              className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-              href="https://github.com/brainyshadow/quickshare"
-            >
-              Open source
-            </a>
-            . Simple. Easy.
           </h2>
         </div>
       </div>
