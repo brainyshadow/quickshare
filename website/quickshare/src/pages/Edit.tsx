@@ -4,7 +4,7 @@ import TextEditor  from "../components/TextEditor";
 
 function Edit() {
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 ">
+    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto">
           <h2 className="mt-10">

@@ -8,7 +8,7 @@ function TextEditor() {
 
   return (
     <>
-      <div className="bg-white w-auto">
+      <div className="w-auto">
         <Editor
           placeholder="Start typing and then click share or scan the qr code"
           editorState={editorState}
