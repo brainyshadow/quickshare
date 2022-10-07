@@ -16,16 +16,6 @@ function Edit() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
-          <div className="lg:w-full">
-            <a href="/edit">
-              <button
-                type="button"
-                className="text-black bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
-              >
-                Create
-              </button>
-            </a>
-          </div>
           <div className="lg:row-span-5">
             <QRCode value="https://quickshare.com/" size={300} />
           </div>
