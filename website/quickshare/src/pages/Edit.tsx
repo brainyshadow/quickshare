@@ -1,6 +1,7 @@
 import React from "react";
 import QRCode from "react-qr-code";
-import TextEditor  from "../components/TextEditor";
+import TextEditor from "../components/TextEditor";
+import { FiShare } from "react-icons/fi";
 
 function Edit() {
   return (
@@ -19,6 +20,7 @@ function Edit() {
           <div className="lg:row-span-5">
             <QRCode value="https://quickshare.com/" size={300} />
           </div>
+          <FiShare />
         </div>
       </div>
     </div>
