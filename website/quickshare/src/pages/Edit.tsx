@@ -4,6 +4,17 @@ import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
 
 function Edit() {
+  const share = () => {
+    navigator
+      .share({
+        title: document.title,
+        text: "Hello World",
+        url: window.location.href,
+      })
+      .then(() => console.log("Successful share! 🎉"))
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
       <div className="col-span-2 lg:h-screen flex">
@@ -21,7 +32,9 @@ function Edit() {
             <QRCode value="https://quickshare.com/" size={300} />
           </div>
           <div className="m-auto scale-150">
-            <FiShare className="scale-150 stroke-gray-50"/>
+            <button onClick={share}>
+              <FiShare className="scale-150 stroke-gray-50" />
+            </button>
           </div>
         </div>
       </div>
