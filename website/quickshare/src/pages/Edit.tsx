@@ -20,7 +20,9 @@ function Edit() {
           <div className="lg:row-span-5">
             <QRCode value="https://quickshare.com/" size={300} />
           </div>
-          <FiShare />
+          <div className="m-auto scale-150">
+            <FiShare className="scale-150 stroke-gray-50"/>
+          </div>
         </div>
       </div>
     </div>
