@@ -206,3 +206,8 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+website/quickshare/.firebase/hosting.YnVpbGQ.cache
+website/quickshare/.firebaserc
+website/quickshare/firebase.json
+website/quickshare/package-lock.json
+website/quickshare/public/404.html
