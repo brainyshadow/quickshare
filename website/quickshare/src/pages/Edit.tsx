@@ -31,9 +31,10 @@ function Edit() {
           <div className="lg:row-span-5">
             <QRCode value="https://quickshare.com/" size={300} />
           </div>
-          <div className="m-auto scale-150">
-            <button onClick={share}>
-              <FiShare className="scale-150 stroke-gray-50" />
+          <div className="m-auto scale-150 rounded-md bg-slate-50">
+            <button onClick={share} className="flex flex-row p-1">
+              <p className="mx-1">Share </p>
+              <FiShare className="scale-125 stroke-black mx-1" />
             </button>
           </div>
         </div>
