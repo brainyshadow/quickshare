@@ -25,7 +25,7 @@ function Welcome() {
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
           <div className="lg:row-span-5">
-            <QRCode value="https://qickshare.com/" size={300} />
+            <QRCode value="https://quick-share.net/" size={300} />
           </div>
           <div className="lg:w-full my-1">
             <a href="/edit">
