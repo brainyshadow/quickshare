@@ -31,10 +31,16 @@ function Edit() {
           <div className="lg:row-span-5">
             <QRCode value="https://quickshare.com/" size={300} />
           </div>
-          <div className="m-auto scale-150 rounded-md bg-slate-50">
-            <button onClick={share} className="flex flex-row p-1">
-              <p className="mx-1">Share </p>
-              <FiShare className="scale-125 stroke-black mx-1" />
+          <div className="lg:w-full my-1">
+            <button
+              type="button"
+              className="flex bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
+              onClick={share}
+            >
+              <div className="mx-auto flex">
+                <p className="mx-1">Share </p>
+                <FiShare className="scale-125 stroke-black mx-1" />
+              </div>
             </button>
           </div>
         </div>
