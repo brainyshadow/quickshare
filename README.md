@@ -10,7 +10,7 @@ Quickshare is an applicaiton built by university students that aims to make shar
  
  <h3>Where can I find quickshare?</h3>
 
-> Quickshare can be found at <a href="https://quick-share.net/">quick-share.net/</a>. To try it simply hit create and then start typing. When your ready to share your creation, click share and either copy the link to a new window or share the link to a new device. When you open the site you will see the text that you have inputted ready to be inputted on the new device.
+> Quickshare can be found at <a href="https://quick-share.net/">quick-share.net</a>. To try it simply hit create and then start typing. When your ready to share your creation, click share and either copy the link to a new window or share the link to a new device. When you open the site you will see the text that you have inputted ready to be inputted on the new device.
 
  
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
