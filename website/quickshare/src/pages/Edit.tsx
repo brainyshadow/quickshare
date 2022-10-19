@@ -3,6 +3,7 @@ import QRCode from "react-qr-code";
 import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
 
+
 function Edit() {
   const share = () => {
     navigator
@@ -14,9 +15,13 @@ function Edit() {
       .then(() => console.log("Successful share! 🎉"))
       .catch((err) => console.error(err));
   };
+ 
+
+  
 
   return (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
+
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto w-1/2">
           <h2 className="mt-10">
