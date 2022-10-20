@@ -18,7 +18,7 @@ code {
 
 div.DraftEditor-root {
   border: 1px solid #000;
-  background-color: rgb(245 208 254);
+  background-color: #f5d0fe;
   height: 10rem;
   width: 100%;
   overflow-y: auto;
