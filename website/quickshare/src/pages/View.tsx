@@ -4,8 +4,22 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
+import { db } from "../firebase";
+
+function getCode(url) {
+  const pageIndex = "/" + "view" + "/";
+
+  const code = url.slice(url.indexOf(pageIndex) + pageIndex.length);
+  if (code.length === 8) {
+    return code;
+  } else {
+    window.location.pathname = "/welcome/";
+  }
+}
 
 function View() {
+  const code = getCode(window.location.pathname);
+  
   const share = () => {
     navigator
       .share({
