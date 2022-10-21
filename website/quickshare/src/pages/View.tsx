@@ -1,10 +1,11 @@
-import React from "react";
+import { useEffect } from "react";
 import logo from "./logo.svg";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 function getCode(url) {
   const pageIndex = "/" + "view" + "/";
@@ -17,9 +18,26 @@ function getCode(url) {
   }
 }
 
+async function getContent(code) {
+const docRef = doc(db,  process.env.REACT_APP_Collection_Name,
+  process.env.REACT_APP_DocumentID);
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  return docSnap.data();
+} else {
+  // doc.data() will be undefined in this case
+  console.log("No such document!");
+}
+}
+
 function View() {
   const code = getCode(window.location.pathname);
-  
+
+  useEffect(() => {
+    const data = getContent(code);
+  }, []);
+
   const share = () => {
     navigator
       .share({
