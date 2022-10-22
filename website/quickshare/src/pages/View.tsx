@@ -5,7 +5,7 @@ import { getFirestore } from "firebase/firestore";
 import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Loading from "../components/Loading";
 
 function getCode(url) {
@@ -32,13 +32,13 @@ async function getContent(code) {
 
 function View() {
   const [data, setData] = useState("");
+  const unsub = onSnapshot(doc(db, "dev", "00000000"), (doc) => {
+    setData(doc.data().data);
+  });
   useEffect(() => {
-    const code = getCode(window.location.pathname);
-    async function getData() {
-      const fetchedData = await getContent(code);
-      setData(fetchedData.data);
-    }
-    getData();
+    return () => {
+      unsub();
+    };
   }, []);
 
   const share = () => {
