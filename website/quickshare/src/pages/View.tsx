@@ -6,6 +6,7 @@ import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import Loading from "../components/Loading";
 
 function getCode(url) {
   const pageIndex = "/" + "view" + "/";
@@ -52,7 +53,9 @@ function View() {
   };
 
   return data === "" ? (
-    <></>
+    <div className="flex h-screen">
+      <Loading />
+    </div>
   ) : (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
       <div className="col-span-2 lg:h-screen flex">
