@@ -51,7 +51,9 @@ function View() {
       .catch((err) => console.error(err));
   };
 
-  return (
+  return data === "" ? (
+    <></>
+  ) : (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto w-1/2 bg-fuchsia-200 border border-black">
