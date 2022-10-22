@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -19,23 +19,25 @@ function getCode(url) {
 }
 
 async function getContent(code) {
-const docRef = doc(db,  process.env.REACT_APP_Collection_Name,
-  process.env.REACT_APP_DocumentID);
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-  return docSnap.data();
-} else {
-  // doc.data() will be undefined in this case
-  console.log("No such document!");
-}
+  const docRef = doc(db, "dev", code);
+  const docSnap = await getDoc(docRef);
+  console.log(docSnap.data());
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    console.log("No such document!");
+  }
 }
 
 function View() {
-  const code = getCode(window.location.pathname);
-
+  const [data, setData] = useState("");
   useEffect(() => {
-    const data = getContent(code);
+    const code = getCode(window.location.pathname);
+    async function getData() {
+      const fetchedData = await getContent(code);
+      setData(fetchedData.data);
+    }
+    getData();
   }, []);
 
   const share = () => {
@@ -53,7 +55,7 @@ function View() {
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto w-1/2 bg-fuchsia-200 border border-black">
-          View others creation.
+          {data}
         </div>
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
@@ -68,7 +70,7 @@ function View() {
               onClick={share}
             >
               <div className="mx-auto flex">
-                <p className="mx-1">Share </p>
+                <p className="mx-1">Share</p>
                 <FiShare className="scale-125 stroke-black mx-1" />
               </div>
             </button>
