@@ -7,6 +7,9 @@ import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Loading from "../components/Loading";
+import { useSelector, useDispatch } from "react-redux";
+import { setError, selectError } from "../reducers/error";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 function getCode(url) {
   const pageIndex = "/" + "view" + "/";
@@ -27,15 +30,17 @@ async function getContent(code) {
 
 function View() {
   const [data, setData] = useState("");
-  const [error, setError] = useState(null);
+
+  const error = useSelector(selectError);
+  const dispatch = useDispatch();
+
   let firestoreDoc = doc(db, "dev", "00000000");
-  if (doc === null) {
-    console.log("EHASDHAS");
-  }
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     setData(doc.data()?.data);
     if (data === undefined) {
-      setError("There is an error");
+      dispatch(
+        setError({ errorType: "warning", errorMessage: "This is the error" })
+      );
     }
   });
   useEffect(() => {
@@ -55,7 +60,10 @@ function View() {
       .catch((err) => console.error(err));
   };
 
-  return error === null ? (
+  const errorType = error.errorType;
+  const errorMessage = error.errorMessage;
+
+  return errorType !== "" ? (
     data === "" ? (
       <div className="flex h-screen">
         <Loading />
