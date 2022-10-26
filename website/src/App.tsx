@@ -4,7 +4,7 @@ import "./App.css";
 import View from "./pages/View";
 import Welcome from "./pages/Welcome";
 import Edit from "./pages/Edit";
-import Test from "./pages/Test";
+
 
 
 function checkRoute(path: string, subStr: string) {
@@ -18,8 +18,6 @@ function routePage() {
     return <Edit />;
   } else if (checkRoute(window.location.pathname, "/welcome")) {
     return <Welcome />;
-  } else if (checkRoute(window.location.pathname, "/tes")) {
-    return <Test />;
   } else {
     window.location.pathname = "/welcome";
     return <Welcome />;
