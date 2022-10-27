@@ -2,8 +2,16 @@ import React from "react";
 import logo from "./logo.svg";
 import QRCode from "react-qr-code";
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setError, selectError } from "../reducers/error";
 
 function Welcome() {
+  const error = useSelector(selectError);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+
+  },[]);
+
   return (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 ">
       <div className="col-span-2 lg:h-screen flex">

@@ -41,6 +41,7 @@ function View() {
       dispatch(
         setError({ errorType: "warning", errorMessage: "This is the error" })
       );
+      window.location.pathname = "/welcome";
     }
   });
   useEffect(() => {
