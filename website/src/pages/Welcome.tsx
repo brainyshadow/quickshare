@@ -8,9 +8,9 @@ import { setError, selectError } from "../reducers/error";
 function Welcome() {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-  useEffect(()=>{
-
-  },[]);
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
 
   return (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 ">
