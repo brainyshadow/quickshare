@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  errorType: "warning",
-  errorMessage: "Document fetching failed",
+  errorType: "",
+  errorMessage: "",
 };
 
 export const slice = createSlice({
-  name: "counter",
+  name: "error",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setError: (state, action) => {
       console.log(action.payload);
