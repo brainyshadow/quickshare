@@ -15,7 +15,7 @@ function getCode(url) {
   const pageIndex = "/" + "view" + "/";
 
   const code = url.slice(url.indexOf(pageIndex) + pageIndex.length);
-  if (code.length === 8) {
+  if (code.length === 4) {
     return code;
   } else {
     window.location.pathname = "/welcome/";
@@ -34,7 +34,7 @@ function View() {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
-  let firestoreDoc = doc(db, "dev", "00000000");
+  let firestoreDoc = doc(db, "dev", "0000");
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     setData(doc.data()?.data);
     if (data === undefined) {
