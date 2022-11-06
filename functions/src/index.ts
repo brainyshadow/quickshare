@@ -21,21 +21,21 @@ export const createDocument = functions.https.onRequest(
     query.forEach((doc: any) => {
       documents.push(doc);
     });
-
     documentId = typeof documents[0]?.id === "string" ? documents[0]?.id : "";
-
     console.log(documentId);
     if (documentId === "") {
       functions.logger.error("No Documents Found", { documents });
       response.status(500).send("No Documents Found");
     } else {
+      const currentTime: Date = new Date();
+      currentTime.setMinutes(currentTime.getMinutes() + 10);
       admin
         .firestore()
         .collection(enviroment)
         .doc(documents[0].id)
         .set({
           data: "",
-          expiryTime: new Date(),
+          expiryTime: currentTime,
         })
         .then(() => {
           functions.logger.info("Document successfully written!");
