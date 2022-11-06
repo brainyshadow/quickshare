@@ -18,6 +18,21 @@ export const createDocument = functions.https.onRequest(
     query.forEach((doc: any) => {
       documtets.push(doc);
     });
+    admin
+      .firestore()
+      .collection("dev")
+      .doc(documtets[0].id)
+      .set({
+        data: "",
+        expiryTime: new Date(),
+      })
+      .then(() => {
+        functions.logger.info("Document successfully written!");
+      })
+      .catch((error: any) => {
+        functions.logger.info("Error writing document: ", error);
+      });
+
     functions.logger.info("Documents Found", { documtets });
     response.send(documtets[0].id);
   }
