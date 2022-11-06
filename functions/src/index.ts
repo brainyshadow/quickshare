@@ -4,24 +4,27 @@ const admin = require("firebase-admin");
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
-admin.initializeApp();
+const enviroment = functions.config().enviroment;
 
+admin.initializeApp();
+console.log(enviroment)
 export const createDocument = functions.https.onRequest(
   async (request, response) => {
+
     var query = await admin
       .firestore()
-      .collection("dev")
+      .collection(enviroment)
       .where("expiryTime", "<", new Date())
       .get();
     functions.logger.info(JSON.stringify(query));
-    let documtets: Array<any> = [];
+    let documents: Array<any> = [];
     query.forEach((doc: any) => {
-      documtets.push(doc);
+      documents.push(doc);
     });
     admin
       .firestore()
-      .collection("dev")
-      .doc(documtets[0].id)
+      .collection(enviroment)
+      .doc(documents[0].id)
       .set({
         data: "",
         expiryTime: new Date(),
@@ -33,7 +36,7 @@ export const createDocument = functions.https.onRequest(
         functions.logger.info("Error writing document: ", error);
       });
 
-    functions.logger.info("Documents Found", { documtets });
-    response.send(documtets[0].id);
+    functions.logger.info("Documents Found", { documents });
+    response.send(documents[0].id);
   }
 );
