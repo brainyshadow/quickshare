@@ -8,16 +8,17 @@ admin.initializeApp();
 
 export const createDocument = functions.https.onRequest(
   async (request, response) => {
-    const documentId: string = "00000000";
     var query = await admin
       .firestore()
       .collection("dev")
       .where("expiryTime", "<", new Date())
       .get();
+    functions.logger.info(JSON.stringify(query));
+    let documtets: Array<any> = [];
     query.forEach((doc: any) => {
-      functions.logger.info(doc.id);
+      documtets.push(doc);
     });
-    functions.logger.info("Hello logs!", { structuredData: true });
-    response.send(documentId);
+    functions.logger.info("Documents Found", { documtets });
+    response.send(documtets[0].id);
   }
 );
