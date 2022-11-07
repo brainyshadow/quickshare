@@ -23,8 +23,8 @@ function View() {
 
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-
-  let firestoreDoc = doc(db, "dev", "0000");
+  const docId: string = getCode(window.location.pathname);
+  let firestoreDoc = doc(db, "dev", docId);
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     setData(doc.data()?.data);
     if (data === undefined) {
