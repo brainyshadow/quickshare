@@ -15,14 +15,13 @@ export const createDocument = functions.https.onRequest(
       .firestore()
       .collection(enviroment)
       .where("expiryTime", "<", new Date())
+      .limit(1)
       .get();
-    functions.logger.info(JSON.stringify(query));
     let documents: Array<any> = [];
     query.forEach((doc: any) => {
       documents.push(doc);
     });
     documentId = typeof documents[0]?.id === "string" ? documents[0]?.id : "";
-    console.log(documentId);
     if (documentId === "") {
       functions.logger.error("No Documents Found", { documents });
       response.status(500).send("No Documents Found");
@@ -38,9 +37,8 @@ export const createDocument = functions.https.onRequest(
           expiryTime: currentTime,
         })
         .then(() => {
-          functions.logger.info("Document successfully written!");
-          functions.logger.info("Documents Found", { documents });
           response.send(documentId);
+          functions.logger.info("Document successfully written!");
         })
         .catch((error: any) => {
           functions.logger.info("Error writing document: ", error);

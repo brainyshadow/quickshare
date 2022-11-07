@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
@@ -9,7 +6,6 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 function getCode(url) {
   const pageIndex = "/" + "view" + "/";
