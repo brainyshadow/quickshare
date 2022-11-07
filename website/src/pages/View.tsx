@@ -14,14 +14,8 @@ function getCode(url) {
   if (code.length === 4) {
     return code;
   } else {
-    window.location.pathname = "/welcome/";
+    window.location.pathname = "/welcome";
   }
-}
-
-async function getContent(code) {
-  const docRef = doc(db, "dev", code);
-  const docSnap = await getDoc(docRef);
-  console.log(docSnap.data());
 }
 
 function View() {
