@@ -6,34 +6,35 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
-
-function getCode(url) {
-  const pageIndex = "/" + "view" + "/";
-
-  const code = url.slice(url.indexOf(pageIndex) + pageIndex.length);
-  if (code.length === 4) {
-    return code;
-  } else {
-    window.location.pathname = "/welcome";
-  }
-}
+import { useParams } from "react-router-dom";
 
 function View() {
   const [data, setData] = useState("");
 
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-  const docId: string = getCode(window.location.pathname);
+  const { docId } = useParams();
+  console.log(docId);
   let firestoreDoc = doc(db, "dev", docId);
-  const unsub = onSnapshot(firestoreDoc, (doc) => {
-    setData(doc.data()?.data);
-    if (data === undefined) {
+  const unsub = onSnapshot(doc(db, "prod", "0000"), (doc) => {
+    console.log("Current data: ", doc.data());
+  }); /* onSnapshot(firestoreDoc, (doc) => {
+    console.log(doc.data());
+    if (doc.data()?.data === undefined) {
       dispatch(
         setError({ errorType: "warning", errorMessage: "This is the error" })
       );
-      window.location.pathname = "/welcome";
+      //window.location.pathname = "/welcome";
     }
-  });
+    if (doc.data()?.expiryTime < new Date()) {
+      console.log("Expired");
+      dispatch(
+        setError({ errorType: "warning", errorMessage: "This is the error" })
+      );
+      //window.location.pathname = "/welcome";
+    }
+    setData(doc.data()?.data);
+  }); */
   useEffect(() => {
     return () => {
       unsub();
