@@ -4,7 +4,7 @@ import "./App.css";
 import View from "./pages/View";
 import Welcome from "./pages/Welcome";
 import Edit from "./pages/Edit";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Navigate, Link } from "react-router-dom";
 
 function checkRoute(path: string, subStr: string) {
   return path.substr(0, subStr.length) === subStr;
@@ -16,7 +16,7 @@ function App() {
       <Route path="/welcome" element={<Welcome />} />
       <Route path="/edit" element={<Edit />} />
       <Route path="/view/:docId" element={<View />} />
-      <Route path="*" element={<Welcome />} />
+      <Route path="*" element={<Navigate to="/welcome" replace />} />
     </Routes>
   );
 }

@@ -9,13 +9,12 @@ import { setError, selectError } from "../reducers/error";
 import { useParams } from "react-router-dom";
 
 function View() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState(" ");
 
   const error = useSelector(selectError);
   const dispatch = useDispatch();
   const { docId } = useParams();
-  console.log(docId);
-  let firestoreDoc = doc(db, "dev", docId);
+  let firestoreDoc = doc(db, "prod", docId);
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     if (doc.data()?.data === undefined) {
       dispatch(
@@ -23,7 +22,7 @@ function View() {
       );
       //window.location.pathname = "/welcome";
     }
-    if (doc.data()?.expiryTime < new Date()) {
+    if (doc.data()?.expiryTime?.seconds < new Date().valueOf() / 1000) {
       console.log("Expired");
       dispatch(
         setError({ errorType: "warning", errorMessage: "This is the error" })
@@ -53,41 +52,35 @@ function View() {
   const errorMessage = error.errorMessage;
 
   return errorType !== "" ? (
-    data === "" ? (
-      <div className="flex h-screen">
-        <Loading />
-      </div>
-    ) : (
-      <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
-        <div className="col-span-2 lg:h-screen flex">
-          <div className="m-auto w-1/2 bg-fuchsia-200 border border-black">
-            {data}
-          </div>
-        </div>
-        <div className="lg:grid lg:h-screen lg:place-items-center">
-          <div className="lg:grid lg:grid-rows-6 ">
-            <div className="lg:row-span-5">
-              <QRCode value="https://quick-share.net/" size={300} />
-            </div>
-            <div className="lg:w-full my-1">
-              <button
-                type="button"
-                className="flex bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
-                onClick={share}
-              >
-                <div className="mx-auto flex">
-                  <p className="mx-1">Share</p>
-                  <FiShare className="scale-125 stroke-black mx-1" />
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  ) : (
     <div className="flex h-screen">
       <Loading />
+    </div>
+  ) : (
+    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
+      <div className="col-span-2 lg:h-screen flex">
+        <div className="m-auto w-1/2 min-h-[24px] bg-fuchsia-200 border border-black">
+          {data}
+        </div>
+      </div>
+      <div className="lg:grid lg:h-screen lg:place-items-center">
+        <div className="lg:grid lg:grid-rows-6 ">
+          <div className="lg:row-span-5">
+            <QRCode value="https://quick-share.net/" size={300} />
+          </div>
+          <div className="lg:w-full my-1">
+            <button
+              type="button"
+              className="flex bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
+              onClick={share}
+            >
+              <div className="mx-auto flex">
+                <p className="mx-1">Share</p>
+                <FiShare className="scale-125 stroke-black mx-1" />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
