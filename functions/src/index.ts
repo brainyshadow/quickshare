@@ -10,6 +10,7 @@ admin.initializeApp();
 console.log(enviroment);
 export const createDocument = functions.https.onRequest(
     async (request, response) => {
+      response.set("Access-Control-Allow-Origin", "https://quick-share");
       let documentId = "";
       const query = await admin
           .firestore()
