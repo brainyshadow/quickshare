@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
 
-
 function Edit() {
+  const [docId, setDocId] = useState("");
+  useEffect(() => {
+    fetch(
+      "https://us-central1-quickshare-64fbe.cloudfunctions.net/createDocument"
+    )
+      .then((response) => response.text())
+      .then((data) => setDocId(data));
+  }, []);
+
   const share = () => {
     navigator
       .share({
         title: document.title,
         text: "Check this out",
-        url: window.location.href,
+        url: "https://quick-share.net/view" + docId,
       })
       .then(() => console.log("Successful share! 🎉"))
       .catch((err) => console.error(err));
   };
- 
-
-  
 
   return (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
-
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto w-1/2">
           <h2 className="mt-10">
