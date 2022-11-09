@@ -16,10 +16,7 @@ function View() {
   const { docId } = useParams();
   console.log(docId);
   let firestoreDoc = doc(db, "dev", docId);
-  const unsub = onSnapshot(doc(db, "prod", "0000"), (doc) => {
-    console.log("Current data: ", doc.data());
-  }); /* onSnapshot(firestoreDoc, (doc) => {
-    console.log(doc.data());
+  const unsub = onSnapshot(firestoreDoc, (doc) => {
     if (doc.data()?.data === undefined) {
       dispatch(
         setError({ errorType: "warning", errorMessage: "This is the error" })
@@ -34,7 +31,7 @@ function View() {
       //window.location.pathname = "/welcome";
     }
     setData(doc.data()?.data);
-  }); */
+  });
   useEffect(() => {
     return () => {
       unsub();
