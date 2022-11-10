@@ -3,7 +3,7 @@ function Error(props) {
   return (
     <div
       id="alert-2"
-      className="flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200"
+      className="flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 z-50 absolute bottom-0 right-0"
       role="alert"
     >
       <svg

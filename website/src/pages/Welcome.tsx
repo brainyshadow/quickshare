@@ -14,7 +14,7 @@ function Welcome() {
   }, [error]);
 
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 ">
+    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 z-0">
       {error.errorMessage !== "" && (
         <Error
           errorTitle={error.errorTitle}
