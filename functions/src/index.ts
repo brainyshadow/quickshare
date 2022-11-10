@@ -10,7 +10,7 @@ admin.initializeApp();
 console.log(enviroment);
 export const createDocument = functions.https.onRequest(
     async (request, response) => {
-      response.set("Access-Control-Allow-Origin", " https://quick-share.net");
+      response.set("Access-Control-Allow-Origin", enviroment === "prod" ? "https://quick-share.net" : "*");
       let documentId = "";
       const query = await admin
           .firestore()
@@ -37,9 +37,9 @@ export const createDocument = functions.https.onRequest(
         const currentTime: Date = new Date();
         currentTime.setMinutes(currentTime.getMinutes() + 10);
         admin
-            .firestore()
+            .firestore(documentId)
             .collection(enviroment)
-            .doc(documents[0].id)
+            .doc()
             .set({
               data: "",
               expiryTime: currentTime,
