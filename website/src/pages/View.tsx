@@ -16,7 +16,7 @@ function View() {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
   const { docId } = useParams();
-  let firestoreDoc = doc(db, "prod", docId);
+  let firestoreDoc = doc(db, process.env.REACT_APP_enviroment, docId);
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     if (doc.data()?.data === undefined) {
       dispatch(

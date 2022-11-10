@@ -13,7 +13,7 @@ function Edit() {
   useEffect(() => {
     const text = editorState.getCurrentContent().getPlainText("\u0001");
     if (docId !== "") {
-      setDoc(doc(db, "prod", docId), { data: text });
+      setDoc(doc(db, process.env.REACT_APP_enviroment, docId), { data: text });
     }
   }, [editorState]);
 
