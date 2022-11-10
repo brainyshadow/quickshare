@@ -20,14 +20,14 @@ function View() {
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     if (doc.data()?.data === undefined) {
       dispatch(
-        setError({ errorType: "warning", errorMessage: "This is the error" })
+        setError({ errorType: "warning", errorMessage: "There was an error" })
       );
       navigate("/welcome");
     }
     if (doc.data()?.expiryTime?.seconds < new Date().valueOf() / 1000) {
       console.log("Expired");
       dispatch(
-        setError({ errorType: "warning", errorMessage: "This is the error" })
+        setError({ errorType: "warning", errorMessage: "The document you were trying to access has expired" })
       );
       navigate("/welcome");
     }
