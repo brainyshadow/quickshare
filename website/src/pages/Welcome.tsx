@@ -12,10 +12,7 @@ function Welcome() {
   useEffect(() => {
     console.log(error);
     setTimeout(
-      () =>
-        dispatch(
-          setError({ errorType: "", errorMessage: "" })
-        ),
+      () => dispatch(setError({ errorType: "", errorMessage: "" })),
       5000
     );
   }, [error]);
