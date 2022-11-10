@@ -18,6 +18,13 @@ export const createDocument = functions.https.onRequest(
           .where("expiryTime", "<", new Date())
           .limit(1)
           .get();
+      admin
+          .firestore()
+          .collection("analytics")
+          .doc(enviroment)
+          .update({
+            numberOfWrites: admin.firestore.FieldValue.increment(1),
+          });
       const documents: Array<any> = [];
       query.forEach((doc: any) => {
         documents.push(doc);
