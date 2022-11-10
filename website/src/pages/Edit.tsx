@@ -3,13 +3,18 @@ import QRCode from "react-qr-code";
 import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
 import { EditorState } from "draft-js";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 function Edit() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [docId, setDocId] = useState("");
 
   useEffect(() => {
-    console.log(editorState.getCurrentContent().getPlainText('\u0001'));
+    const text = editorState.getCurrentContent().getPlainText("\u0001");
+    if (docId !== "") {
+      setDoc(doc(db, "prod", docId), { data: text });
+    }
   }, [editorState]);
 
   useEffect(() => {
