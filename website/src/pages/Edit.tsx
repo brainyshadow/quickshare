@@ -19,7 +19,9 @@ function Edit() {
 
   useEffect(() => {
     fetch(
-      "https://us-central1-quickshare-64fbe.cloudfunctions.net/createDocument"
+      process.env.REACT_APP_enviroment === "prod"
+        ? "https://us-central1-quickshare-64fbe.cloudfunctions.net/createDocument"
+        : "http://localhost:5001/quickshare-64fbe/us-central1/createDocument"
     )
       .then((response) => response.text())
       .then((data) => setDocId(data));
