@@ -30,7 +30,7 @@ function Edit() {
       .share({
         title: document.title,
         text: "Check this out",
-        url: "https://quick-share.net/view" + docId,
+        url: "https://quick-share.net/view/" + docId,
       })
       .then(() => console.log("Successful share! 🎉"))
       .catch((err) => console.error(err));
