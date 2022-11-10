@@ -11,6 +11,13 @@ function Welcome() {
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(error);
+    setTimeout(
+      () =>
+        dispatch(
+          setError({ errorType: "", errorMessage: "" })
+        ),
+      5000
+    );
   }, [error]);
 
   return (
