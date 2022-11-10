@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-function Error(props) {
+interface props {
+  errorTitle: string;
+  errorMessage: string;
+}
+
+function Error(props: props) {
   const [fadeOut, setFadeOut] = useState(false);
   const [display, setDisplay] = useState(true);
 
