@@ -49,9 +49,8 @@ export const createDocument = functions.https.onRequest(
               functions.logger.info("Document successfully written!");
             })
             .catch((error: any) => {
-              functions.logger.info("Error writing document: ", error);
-              functions.logger.info("Error Clearing Document", {error});
-              response.status(500).send("");
+              functions.logger.error("Error Clearing Document: ", error);
+              response.status(500).send("Error Clearing Document");
             });
       }
     }
