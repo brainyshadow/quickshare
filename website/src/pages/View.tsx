@@ -7,8 +7,10 @@ import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function View() {
+  let navigate = useNavigate();
   const [data, setData] = useState(" ");
 
   const error = useSelector(selectError);
@@ -20,14 +22,14 @@ function View() {
       dispatch(
         setError({ errorType: "warning", errorMessage: "This is the error" })
       );
-      //window.location.pathname = "/welcome";
+      navigate("/welcome");
     }
     if (doc.data()?.expiryTime?.seconds < new Date().valueOf() / 1000) {
       console.log("Expired");
       dispatch(
         setError({ errorType: "warning", errorMessage: "This is the error" })
       );
-      //window.location.pathname = "/welcome";
+      navigate("/welcome");
     }
     setData(doc.data()?.data);
   });
