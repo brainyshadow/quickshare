@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Editor, EditorState } from "draft-js";
+import { Editor } from "draft-js";
 import "draft-js/dist/Draft.css";
 
-function TextEditor() {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+function TextEditor(props) {
+  const { editorState, setEditorState } = props;
 
   return (
     <>

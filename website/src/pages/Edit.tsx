@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
+import { EditorState } from "draft-js";
 
 function Edit() {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [docId, setDocId] = useState("");
+
+  useEffect(() => {
+    console.log(editorState.getCurrentContent().getPlainText('\u0001'));
+  }, [editorState]);
+
   useEffect(() => {
     fetch(
       "https://us-central1-quickshare-64fbe.cloudfunctions.net/createDocument"
@@ -31,14 +38,20 @@ function Edit() {
           <h2 className="mt-10">
             Start Typing and when your ready, share it
             <br />
-            <TextEditor />
+            <TextEditor
+              editorState={editorState}
+              setEditorState={setEditorState}
+            />
           </h2>
         </div>
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
           <div className="lg:row-span-5">
-            <QRCode value="https://quick-share.net/" size={300} />
+            <QRCode
+              value={`https://quick-share.net/view/${docId}`}
+              size={300}
+            />
           </div>
           <div className="lg:w-full my-1">
             <button
