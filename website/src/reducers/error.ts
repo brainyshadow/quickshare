@@ -10,10 +10,8 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setError: (state, action) => {
-      console.log(action.payload);
       state.errorType = action.payload.errorType;
       state.errorMessage = action.payload.errorMessage;
-
     },
   },
 });

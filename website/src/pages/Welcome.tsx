@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import QRCode from "react-qr-code";
 import { useState, useEffect } from "react";
+import Error from "../components/Error";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
 
@@ -14,6 +15,13 @@ function Welcome() {
 
   return (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 ">
+      {error.errorMessage !== "" && (
+        <Error
+          errorTitle={error.errorTitle}
+          errorMessage={error.errorMessage}
+        />
+      )}
+
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto">
           <h1 className="md:text-9xl text-8xl font-sans mb-10">quickshare</h1>
