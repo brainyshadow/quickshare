@@ -8,10 +8,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Countdown from "../components/Countdown";
 
 function View() {
   let navigate = useNavigate();
   const [data, setData] = useState(" ");
+  const [expiryTime, setExpiryTime] = useState(null);
 
   const error = useSelector(selectError);
   const dispatch = useDispatch();
@@ -27,7 +29,10 @@ function View() {
     if (doc.data()?.expiryTime?.seconds < new Date().valueOf() / 1000) {
       console.log("Expired");
       dispatch(
-        setError({ errorType: "warning", errorMessage: "The document you were trying to access has expired" })
+        setError({
+          errorType: "warning",
+          errorMessage: "The document you were trying to access has expired",
+        })
       );
       navigate("/welcome");
     }
@@ -51,7 +56,6 @@ function View() {
   };
 
   const errorType = error.errorType;
-  const errorMessage = error.errorMessage;
 
   return errorType !== "" ? (
     <div className="flex h-screen">
@@ -66,6 +70,7 @@ function View() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
+          <Countdown expiryTime={expiryTime} />
           <div className="lg:row-span-5">
             <QRCode value="https://quick-share.net/" size={300} />
           </div>
