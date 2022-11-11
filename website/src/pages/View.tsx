@@ -45,8 +45,6 @@ function View() {
     };
   }, []);
 
-
-
   const share = () => {
     navigator
       .share({
@@ -66,9 +64,9 @@ function View() {
     </div>
   ) : (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
-      <div className="col-span-2 lg:h-screen flex">
+      <div className="col-span-2 lg:h-screen flex break-words">
         <div className="m-auto w-1/2 min-h-[24px] bg-fuchsia-200 border border-black">
-          {data}
+          <p>{data}</p>
         </div>
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
