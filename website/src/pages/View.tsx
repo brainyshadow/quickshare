@@ -37,12 +37,15 @@ function View() {
       navigate("/welcome");
     }
     setData(doc.data()?.data);
+    setExpiryTime(doc.data()?.expiryTime?.seconds);
   });
   useEffect(() => {
     return () => {
       unsub();
     };
   }, []);
+
+
 
   const share = () => {
     navigator

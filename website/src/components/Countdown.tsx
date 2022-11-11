@@ -26,6 +26,10 @@ function Countdown(props: props) {
         <h2>
           {secondsLeft === 0
             ? ""
+            : Math.round(secondsLeft / 60) <= 1
+            ? `${Math.round(secondsLeft / 60)} minutes and ${
+                Math.round(secondsLeft) - Math.round(secondsLeft / 60)
+              } seconds left`
             : Math.round(secondsLeft / 60) + ` minutes until expiry`}
         </h2>
       </div>
