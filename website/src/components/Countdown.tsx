@@ -1,17 +1,30 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setError } from "../reducers/error";
 
 interface props {
   expiryTime: any;
 }
 
 function Countdown(props: props) {
+  let navigate = useNavigate();
   const { expiryTime } = props;
-  console.log(expiryTime);
-  const [secondsLeft, setSecondsLeft] = useState(0);
+  const dispatch = useDispatch();
+  const [secondsLeft, setSecondsLeft] = useState(null);
   useEffect(() => {
     const interval = setInterval(() => {
       if (typeof expiryTime === "number") {
         setSecondsLeft(expiryTime - Date.now() / 1000);
+      }
+      if (secondsLeft < 1 && secondsLeft !== null) {
+        dispatch(
+          setError({
+            errorType: "warning",
+            errorMessage: "The document you were trying to access has expired",
+          })
+        );
+        navigate("/welcome");
       }
     }, 1000);
     return () => {
