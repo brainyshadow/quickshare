@@ -3,19 +3,32 @@ import QRCode from "react-qr-code";
 import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
 import { EditorState } from "draft-js";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import Countdown from "../components/Countdown";
 
 function Edit() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [docId, setDocId] = useState("");
+  const [expiryTime, setExpiryTime] = useState(null);
 
   useEffect(() => {
     const text = editorState.getCurrentContent().getPlainText("\u0001");
     if (docId !== "") {
-      updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), { data: text });
+      updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
+        data: text,
+      });
     }
   }, [editorState]);
+
+  useEffect(() => {
+    if (docId !== "") {
+      let firestoreDoc = doc(db, process.env.REACT_APP_enviroment, docId);
+      getDoc(firestoreDoc).then((docSnap) => {
+        setExpiryTime(docSnap.data()?.expiryTime?.seconds);
+      });
+    }
+  }, [docId]);
 
   useEffect(() => {
     fetch(
@@ -54,6 +67,7 @@ function Edit() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
+          <Countdown expiryTime={expiryTime} />
           <div className="lg:row-span-5">
             <QRCode
               value={`https://quick-share.net/view/${docId}`}

@@ -11,7 +11,6 @@ function Error(props: props) {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("Here");
       setFadeOut(true);
     }, 3000);
   }, []);
