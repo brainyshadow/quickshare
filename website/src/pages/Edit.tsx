@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import TextEditor from "../components/TextEditor";
 import { FiShare } from "react-icons/fi";
-import { EditorState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import Countdown from "../components/Countdown";
@@ -13,7 +13,10 @@ function Edit() {
   const [expiryTime, setExpiryTime] = useState(null);
 
   useEffect(() => {
-    const text = editorState.getCurrentContent().getPlainText("\u0001");
+    const blocks = convertToRaw(editorState.getCurrentContent()).blocks;
+    const text = blocks
+      .map((block) => (!block.text.trim() && "\n") || block.text)
+      .join("\n");
     if (docId !== "") {
       updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
         data: text,

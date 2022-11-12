@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
