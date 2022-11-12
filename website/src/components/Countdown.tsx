@@ -36,8 +36,8 @@ function Countdown(props: props) {
     <div className="flex bg-white font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full mb-1 rounded-md">
       <div className="m-auto">
         <h2>
-          {secondsLeft === 0
-            ? ""
+          {secondsLeft === null
+            ? `10 minutes until expiry`
             : secondsLeft <= 120
             ? `${
                 Math.floor(secondsLeft / 60) >= 1
