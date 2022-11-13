@@ -6,7 +6,7 @@ Quickshare is an applicaiton built by university students that aims to make shar
 
  <h3>How was it built?</h3>
 
-> Resume Maker was made using <b>React<b>, <b>Firebase<b>, <b>Firestore<b>, and <b>Tailwind CSS<b>.  
+> Resume Maker was made using <b>React<b>, <b>Node.js<b>, <b>Firebase<b>, <b>Firestore<b>, and <b>Tailwind CSS<b>.  
  
  <h3>Where can I find quickshare?</h3>
 
