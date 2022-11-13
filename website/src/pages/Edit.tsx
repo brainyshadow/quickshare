@@ -16,7 +16,7 @@ function Edit() {
 
   useEffect(() => {
     const html = DOMPurify.sanitize(stateToHTML(editorState.getCurrentContent()));
-    if (docId !== "") {
+    if (docId !== "" && html.length < 5000) {
       updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
         data: html,
       });
