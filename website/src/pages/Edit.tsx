@@ -14,6 +14,12 @@ function Edit() {
   const [docId, setDocId] = useState("");
   const [expiryTime, setExpiryTime] = useState(null);
 
+  async function clearDoc() {
+    await updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
+      data: "",
+    });
+  }
+
   useEffect(() => {
     const html = DOMPurify.sanitize(
       stateToHTML(editorState.getCurrentContent())
@@ -76,7 +82,7 @@ function Edit() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
-          <Countdown expiryTime={expiryTime} />
+          <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
           <div className="lg:row-span-5">
             <QRCode
               value={`https://quick-share.net/view/${docId}`}

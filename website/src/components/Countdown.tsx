@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setError } from "../reducers/error";
+import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
 
 interface props {
   expiryTime: any;
+  clearDoc: any;
 }
 
 function Countdown(props: props) {
   let navigate = useNavigate();
-  const { expiryTime } = props;
+  const { expiryTime, clearDoc } = props;
   const dispatch = useDispatch();
   const [secondsLeft, setSecondsLeft] = useState(null);
   useEffect(() => {
@@ -24,7 +27,9 @@ function Countdown(props: props) {
             errorMessage: "The document you were trying to access has expired",
           })
         );
-        navigate("/welcome");
+        clearDoc().then(() => {
+          navigate("/welcome");
+        });
       }
     }, 1000);
     return () => {
@@ -44,7 +49,7 @@ function Countdown(props: props) {
                   ? `${Math.floor(secondsLeft / 60)} minutes and`
                   : ``
               } ${
-                Math.round(secondsLeft)-Math.floor(secondsLeft / 60)*60
+                Math.round(secondsLeft) - Math.floor(secondsLeft / 60) * 60
               } seconds left`
             : Math.round(secondsLeft / 60) + ` minutes until expiry`}
         </h2>

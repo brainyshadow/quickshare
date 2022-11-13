@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import { FiShare } from "react-icons/fi";
 import { db } from "../firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";
@@ -19,6 +19,13 @@ function View() {
   const dispatch = useDispatch();
   const { docId } = useParams();
   let firestoreDoc = doc(db, process.env.REACT_APP_enviroment, docId);
+
+  async function clearDoc() {
+    await updateDoc(firestoreDoc, {
+      data: "",
+    });
+  }
+
   const unsub = onSnapshot(firestoreDoc, (doc) => {
     if (doc.data()?.data === undefined) {
       dispatch(
@@ -72,7 +79,7 @@ function View() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">
-          <Countdown expiryTime={expiryTime} />
+          <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
           <div className="lg:row-span-5">
             <QRCode value="https://quick-share.net/" size={300} />
           </div>
