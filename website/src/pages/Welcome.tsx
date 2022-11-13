@@ -1,7 +1,5 @@
-import React from "react";
-import logo from "./logo.svg";
 import QRCode from "react-qr-code";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Error from "../components/Error";
 import { useSelector, useDispatch } from "react-redux";
 import { setError, selectError } from "../reducers/error";

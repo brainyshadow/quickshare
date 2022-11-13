@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import { Editor } from "draft-js";
 import "draft-js/dist/Draft.css";
 

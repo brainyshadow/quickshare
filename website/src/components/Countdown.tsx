@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setError } from "../reducers/error";
-import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
-import { db } from "../firebase";
 
 interface props {
   expiryTime: any;
