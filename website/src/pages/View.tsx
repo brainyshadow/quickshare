@@ -9,12 +9,12 @@ import { setError, selectError } from "../reducers/error";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Countdown from "../components/Countdown";
+import * as DOMPurify from "dompurify";
 
 function View() {
   let navigate = useNavigate();
   const [data, setData] = useState(" ");
   const [expiryTime, setExpiryTime] = useState(null);
-
   const error = useSelector(selectError);
   const dispatch = useDispatch();
   const { docId } = useParams();
@@ -36,7 +36,7 @@ function View() {
       );
       navigate("/welcome");
     }
-    setData(doc.data()?.data);
+    setData(DOMPurify.sanitize(doc.data()?.data));
     setExpiryTime(doc.data()?.expiryTime?.seconds);
   });
   useEffect(() => {
@@ -65,9 +65,10 @@ function View() {
   ) : (
     <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
       <div className="col-span-2 lg:h-screen flex break-words">
-        <div className="m-auto w-1/2 min-h-[24px] bg-fuchsia-200 border border-black">
-          <p>{data}</p>
-        </div>
+        <div
+          className="m-auto w-1/2 min-h-[24px] bg-fuchsia-200 border border-black"
+          dangerouslySetInnerHTML={{ __html: data }}
+        />
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center">
         <div className="lg:grid lg:grid-rows-6 ">

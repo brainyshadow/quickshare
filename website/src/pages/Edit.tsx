@@ -6,6 +6,8 @@ import { EditorState, convertToRaw } from "draft-js";
 import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import Countdown from "../components/Countdown";
+import { stateToHTML } from "draft-js-export-html";
+import * as DOMPurify from "dompurify";
 
 function Edit() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -13,13 +15,10 @@ function Edit() {
   const [expiryTime, setExpiryTime] = useState(null);
 
   useEffect(() => {
-    const blocks = convertToRaw(editorState.getCurrentContent()).blocks;
-    const text = blocks
-      .map((block) => (!block.text.trim() && "\n") || block.text)
-      .join("\n");
+    const html = DOMPurify.sanitize(stateToHTML(editorState.getCurrentContent()));
     if (docId !== "") {
       updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
-        data: text,
+        data: html,
       });
     }
   }, [editorState]);
