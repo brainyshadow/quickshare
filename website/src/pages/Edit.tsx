@@ -15,12 +15,19 @@ function Edit() {
   const [expiryTime, setExpiryTime] = useState(null);
 
   useEffect(() => {
-    const html = DOMPurify.sanitize(stateToHTML(editorState.getCurrentContent()));
-    if (docId !== "" && html.length < 5000) {
-      updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
-        data: html,
-      });
-    }
+    const html = DOMPurify.sanitize(
+      stateToHTML(editorState.getCurrentContent())
+    );
+    const interval = setInterval(() => {
+      if (docId !== "" && html.length < 5000) {
+        updateDoc(doc(db, process.env.REACT_APP_enviroment, docId), {
+          data: html,
+        });
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, [editorState]);
 
   useEffect(() => {
