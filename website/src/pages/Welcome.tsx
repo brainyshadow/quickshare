@@ -23,7 +23,6 @@ function Welcome() {
           errorMessage={error.errorMessage}
         />
       )}
-
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto">
           <h1 className="md:text-9xl text-8xl font-sans mb-10">quickshare</h1>
@@ -40,20 +39,28 @@ function Welcome() {
           </h2>
         </div>
       </div>
-      <div className="lg:grid lg:h-screen lg:place-items-center">
-        <div className="lg:grid lg:grid-rows-6 ">
-          <div className="lg:row-span-5">
-            <QRCode value="https://quick-share.net/" size={300} />
-          </div>
-          <div className="lg:w-full my-1">
-            <a href="/edit">
-              <button
-                type="button"
-                className="text-black bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
-              >
-                Create
-              </button>
-            </a>
+      <div>
+        <div className="lg:grid lg:h-screen lg:place-items-center my-3">
+          <div className="lg:grid lg:grid-rows-6 ">
+            <div className="lg:row-span-5">
+              <QRCode
+                className="m-auto"
+                value="https://quick-share.net/"
+                size={300}
+              />
+            </div>
+            <div className="my-0.5 flex">
+              <div className="m-auto">
+                <a href="/edit">
+                  <button
+                    type="button"
+                    className="text-black bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
+                  >
+                    Create
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
