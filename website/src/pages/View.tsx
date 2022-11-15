@@ -84,7 +84,7 @@ function View() {
               <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
             </div>
             <QRCode
-              value="https://quick-share.net/"
+              value={window.location.href}
               className="m-auto"
               size={300}
             />
