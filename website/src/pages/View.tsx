@@ -79,15 +79,21 @@ function View() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center mt-3">
         <div className="lg:grid lg:grid-rows-6 m-auto">
-          <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
           <div className="lg:row-span-5">
-            <QRCode value="https://quick-share.net/" size={300} />
+            <div className="m-auto w-[300px]">
+              <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
+            </div>
+            <QRCode
+              value="https://quick-share.net/"
+              className="m-auto"
+              size={300}
+            />
           </div>
           <div className="lg:w-full my-2 flex">
-            <div className="m-auto">
+            <div className="m-auto w-[300px]">
               <button
                 type="button"
-                className="flex bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
+                className="flex w-[300px] bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
                 onClick={share}
               >
                 <div className="mx-auto flex">

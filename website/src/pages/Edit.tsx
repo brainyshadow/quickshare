@@ -82,7 +82,9 @@ function Edit() {
       </div>
       <div className="lg:grid lg:h-screen lg:place-items-center mt-3">
         <div className="lg:grid lg:grid-rows-6 m-auto">
+          <div className="m-auto w-[300px]">
           <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
+          </div>
           <div className="lg:row-span-5">
             <QRCode
               className="m-auto"
@@ -91,10 +93,10 @@ function Edit() {
             />
           </div>
           <div className="lg:w-full my-2 flex">
-            <div className="m-auto">
+            <div className="m-auto w-[300px]">
               <button
                 type="button"
-                className="flex bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
+                className="w-[300px] flex bg-white hover:ring-2 font-medium rounded-md text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:focus:ring-blue-800 lg:w-full"
                 onClick={share}
               >
                 <div className="mx-auto flex">
