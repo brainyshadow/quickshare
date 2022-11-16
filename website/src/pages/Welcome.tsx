@@ -40,16 +40,16 @@ function Welcome() {
         </div>
       </div>
       <div>
-        <div className="lg:grid lg:h-screen lg:place-items-center my-3">
+        <div className="lg:grid lg:h-screen lg:place-items-center">
           <div className="lg:grid lg:grid-rows-6 ">
-            <div className="lg:row-span-5">
+            <div className="lg:row-span-4">
               <QRCode
-                className="m-auto"
+                className="mx-auto"
                 value="https://quick-share.net/"
                 size={300}
               />
             </div>
-            <div className="my-0.5 flex">
+            <div className="mt-2 flex">
               <div className="m-auto w-[300px]">
                 <a href="/edit" className="">
                   <button
