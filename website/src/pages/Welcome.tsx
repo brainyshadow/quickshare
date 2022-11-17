@@ -16,14 +16,14 @@ function Welcome() {
   }, [error]);
 
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 z-0">
+    <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 z-0">
       {error.errorMessage !== "" && (
         <Error
           errorTitle={error.errorTitle}
           errorMessage={error.errorMessage}
         />
       )}
-      <div className="col-span-2 lg:h-screen flex">
+      <div className="lg:col-span-2 lg:h-screen flex">
         <div className="m-auto">
           <h1 className="md:text-9xl text-8xl font-sans mb-10">quickshare</h1>
           <h2 className="mt-10">

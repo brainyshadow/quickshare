@@ -67,7 +67,7 @@ function Edit() {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
+    <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 z-0">
       <div className="col-span-2 lg:h-screen flex">
         <div className="m-auto w-1/2">
           <h2 className="mt-10">
@@ -83,7 +83,7 @@ function Edit() {
       <div className="lg:grid lg:h-screen lg:place-items-center mt-3">
         <div className="lg:grid lg:grid-rows-6 m-auto">
           <div className="m-auto w-[300px]">
-          <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
+            <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />
           </div>
           <div className="lg:row-span-5">
             <QRCode

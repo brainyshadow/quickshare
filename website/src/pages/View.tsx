@@ -70,8 +70,8 @@ function View() {
       <Loading />
     </div>
   ) : (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:content-center h-screen bg-fuchsia-300">
-      <div className="col-span-2 lg:h-screen flex break-words">
+    <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:gap-4 lg:content-center h-screen bg-fuchsia-300 z-0">
+      <div className="lg:col-span-2 lg:h-screen flex break-words">
         <div
           className="m-auto w-1/2 min-h-[24px] bg-fuchsia-200 border border-black"
           dangerouslySetInnerHTML={{ __html: data }}
