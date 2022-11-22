@@ -5,11 +5,16 @@ import { FiShare } from "react-icons/fi";
 import { EditorState, convertToRaw } from "draft-js";
 import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import { useSelector, useDispatch } from "react-redux";
+import { setError, selectError } from "../reducers/error";
 import Countdown from "../components/Countdown";
 import { stateToHTML } from "draft-js-export-html";
 import * as DOMPurify from "dompurify";
+import { useNavigate } from "react-router-dom";
 
 function Edit() {
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [docId, setDocId] = useState("");
   const [expiryTime, setExpiryTime] = useState(null);
@@ -51,7 +56,19 @@ function Edit() {
         ? "https://us-central1-quickshare-64fbe.cloudfunctions.net/createDocument"
         : "http://localhost:5001/quickshare-64fbe/us-central1/createDocument"
     )
-      .then((response) => response.text())
+      .then((response) => {
+        if (response.status !== 200) {
+          dispatch(
+            setError({
+              errorType: "warning",
+              errorMessage: "There was an error creating your document",
+            })
+          );
+          navigate("/welcome");
+        } else {
+          return response.text();
+        }
+      })
       .then((data) => setDocId(data));
   }, []);
 
