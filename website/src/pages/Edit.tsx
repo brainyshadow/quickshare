@@ -5,8 +5,8 @@ import { FiShare } from "react-icons/fi";
 import { EditorState, convertToRaw } from "draft-js";
 import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
-import { useSelector, useDispatch } from "react-redux";
-import { setError, selectError } from "../reducers/error";
+import { useDispatch } from "react-redux";
+import { setError } from "../reducers/error";
 import Countdown from "../components/Countdown";
 import { stateToHTML } from "draft-js-export-html";
 import * as DOMPurify from "dompurify";
@@ -117,7 +117,7 @@ function Edit() {
           </h2>
         </div>
       </div>
-      <div className="lg:grid lg:h-screen lg:place-items-center mt-3">
+      <div className="lg:grid lg:h-screen place-items-center mt-3">
         <div className="lg:grid lg:grid-rows-6 m-auto">
           <div className="m-auto w-[300px]">
             <Countdown expiryTime={expiryTime} clearDoc={clearDoc} />

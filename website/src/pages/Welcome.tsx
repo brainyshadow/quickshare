@@ -40,7 +40,7 @@ function Welcome() {
         </div>
       </div>
       <div>
-        <div className="lg:grid lg:h-screen lg:place-items-center">
+        <div className="lg:grid lg:h-screen place-items-center mt-3">
           <div className="lg:grid lg:grid-rows-6 ">
             <div className="lg:row-span-4">
               <QRCode

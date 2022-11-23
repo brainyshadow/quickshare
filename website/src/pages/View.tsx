@@ -77,7 +77,7 @@ function View() {
           dangerouslySetInnerHTML={{ __html: data }}
         />
       </div>
-      <div className="lg:grid lg:h-screen lg:place-items-center mt-3">
+      <div className="lg:grid lg:h-screen place-items-center mt-3">
         <div className="lg:grid lg:grid-rows-6 m-auto">
           <div className="lg:row-span-5">
             <div className="m-auto w-[300px]">
