@@ -12,6 +12,18 @@ import { stateToHTML } from "draft-js-export-html";
 import * as DOMPurify from "dompurify";
 import { useNavigate } from "react-router-dom";
 
+async function fetchWithTimeout(resource) {
+  const timeout = 8000;
+
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  const response = await fetch(resource, {
+    signal: controller.signal,
+  });
+  clearTimeout(id);
+  return response;
+}
+
 function Edit() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,7 +63,7 @@ function Edit() {
   }, [docId]);
 
   useEffect(() => {
-    fetch(
+    fetchWithTimeout(
       process.env.REACT_APP_enviroment === "prod"
         ? "https://us-central1-quickshare-64fbe.cloudfunctions.net/createDocument"
         : "http://localhost:5001/quickshare-64fbe/us-central1/createDocument"
@@ -69,7 +81,15 @@ function Edit() {
           return response.text();
         }
       })
-      .then((data) => setDocId(data));
+      .then((data) => setDocId(data))
+      .catch((error) => {
+        dispatch(
+          setError({
+            errorType: "warning",
+            errorMessage: "There was an error creating your document",
+          })
+        );
+      });
   }, []);
 
   const share = () => {
