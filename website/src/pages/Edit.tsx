@@ -69,6 +69,7 @@ function Edit() {
         : "http://localhost:5001/quickshare-64fbe/us-central1/createDocument"
     )
       .then((response) => {
+        if (!response.ok) throw Error(response.statusText);
         if (response.status !== 200) {
           dispatch(
             setError({
@@ -89,6 +90,7 @@ function Edit() {
             errorMessage: "There was an error creating your document",
           })
         );
+        navigate("/welcome");
       });
   }, []);
 
