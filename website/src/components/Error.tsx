@@ -26,7 +26,7 @@ function Error(props: props) {
     display && (
       <div
         id="alert-2"
-        className={`flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 z-50 absolute bottom-0 right-0 transition-opacity ${
+        className={`flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 z-50 absolute bottom-0 right-8 transition-opacity ${
           fadeOut ? `opacity-0` : `opacity-100`
         }`}
         role="alert"

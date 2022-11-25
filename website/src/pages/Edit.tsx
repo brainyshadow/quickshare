@@ -83,7 +83,7 @@ function Edit() {
         }
       })
       .then((data) => setDocId(data))
-      .catch((error) => {
+      .catch(() => {
         dispatch(
           setError({
             errorType: "warning",
